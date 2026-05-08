@@ -11,22 +11,19 @@
   <meta name="description" content="AI visuals that shouldn't be possible. Stills × Motion for brands. @iamvolo.ai">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; overflow-x:hidden; }
 
     body {
-      /* If you have bg.jpg, uncomment the next line and comment the background-color */
-      /* background: url('bg.jpg') center top / cover no-repeat fixed; */
       background-color: #89CFF0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
       min-height: 100vh;
       min-height: 100dvh;
-      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     /* ===== CLOUDS ===== */
@@ -37,54 +34,48 @@
     }
     .cloud {
       position: absolute;
-      filter: drop-shadow(2px 4px 3px rgba(0,0,0,0.08));
+      filter: drop-shadow(2px 4px 3px rgba(0,0,0,0.06));
     }
-    .cloud path, .cloud ellipse {
+    .cloud path {
       fill: #FFFFFF;
       stroke: #d4e8f0;
       stroke-width: 1.5;
     }
 
-    /* Top clouds — large, overlapping edges */
-    .cloud-1 { top: -30px; left: -50px; width: 280px; }
-    .cloud-2 { top: -15px; right: -20px; width: 240px; }
-    .cloud-3 { top: 20px; left: 20%; width: 200px; }
-    .cloud-4 { top: -5px; left: 55%; width: 170px; }
+    .cloud-1 { top: -30px; left: -50px; width: 260px; }
+    .cloud-2 { top: -10px; right: -30px; width: 220px; }
+    .cloud-3 { top: 30px; left: 28%; width: 180px; }
+    .cloud-4 { top: -5px; left: 58%; width: 150px; }
+    .cloud-5 { top: 42%; left: -65px; width: 140px; }
+    .cloud-6 { top: 58%; right: -55px; width: 130px; }
+    .cloud-7 { bottom: -20px; left: -25px; width: 250px; }
+    .cloud-8 { bottom: 15px; right: -35px; width: 210px; }
+    .cloud-9 { bottom: -25px; left: 35%; width: 200px; }
 
-    /* Middle small clouds */
-    .cloud-5 { top: 38%; left: -60px; width: 160px; }
-    .cloud-6 { top: 52%; right: -50px; width: 150px; }
-
-    /* Bottom clouds */
-    .cloud-7 { bottom: -25px; left: -30px; width: 270px; }
-    .cloud-8 { bottom: 10px; right: -40px; width: 230px; }
-    .cloud-9 { bottom: -20px; left: 30%; width: 210px; }
-
-    /* ===== WATERMARK TEXT ===== */
+    /* ===== WATERMARK ===== */
     .watermark {
       position: fixed;
-      top: 28%;
-      left: 0;
-      right: 0;
+      top: 50%; left: 0; right: 0;
       text-align: center;
+      transform: translateY(-50%);
       font-family: 'Fredoka One', cursive;
-      font-size: clamp(48px, 14vw, 110px);
+      font-size: clamp(60px, 16vw, 130px);
       color: #F5C518;
       text-shadow: 3px 4px 0 #D4A012;
-      opacity: 0.5;
+      opacity: 0.12;
       white-space: nowrap;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
       letter-spacing: -1px;
-      text-transform: lowercase;
     }
 
     /* ===== CONTAINER ===== */
     .container {
       position: relative; z-index: 1;
-      width: 100%; max-width: 420px;
-      padding: 52px 24px 40px;
+      width: 100%; max-width: 400px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex; flex-direction: column; align-items: center;
+      text-align: center;
     }
 
     /* ===== AVATAR ===== */
@@ -92,162 +83,135 @@
       width: 120px; height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      background: rgba(255,255,255,0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
       border: 3px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.15);
     }
 
-    /* ===== USERNAME ===== */
-    .username {
+    /* ===== TITLE ===== */
+    .title {
       font-family: 'Fredoka One', cursive;
-      font-size: 26px; font-weight: 400;
+      font-size: 32px; font-weight: 400;
       color: #F5C518;
       text-shadow: 2px 3px 0 #D4A012;
-      text-transform: none;
       margin-top: 14px;
       letter-spacing: 0.5px;
     }
 
-    /* ===== SOCIAL ICONS ===== */
-    .socials {
-      display: flex; gap: 14px; margin-top: 10px;
-    }
-    .social-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 34px; height: 34px; border-radius: 50%;
-      background: #F5C518; color: #000; text-decoration: none;
-      transition: transform 0.15s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-    }
-    .social-icon:hover { transform: scale(1.12); }
-    .social-icon svg { width: 16px; height: 16px; fill: #1a1a1a; }
-
     /* ===== TAGLINE ===== */
     .tagline {
       font-weight: 500; font-size: 14px;
-      color: rgba(255,255,255,0.8);
-      text-align: center; line-height: 1.5;
-      margin-top: 12px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      margin-top: 10px;
     }
 
-    /* ===== BUTTONS ===== */
-    .links {
-      display: flex; flex-direction: column;
-      gap: 10px; width: 100%; margin-top: 22px;
+    /* ===== ICON LINKS ===== */
+    .icon-links {
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+      align-items: flex-start;
+      justify-content: center;
     }
-    .btn {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 16px 24px;
-      background: rgba(255,255,255,0.88);
-      color: #1a1a1a;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 700; font-size: 15px;
-      text-transform: uppercase; text-decoration: none;
-      border-radius: 50px; border: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
-      min-height: 54px; letter-spacing: 0.3px;
+
+    .icon-link {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      text-decoration: none;
+      transition: transform 0.15s;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      background: #fff;
+    .icon-link:hover { transform: scale(1.08); }
+    .icon-link:active { transform: scale(0.95); }
+
+    .icon-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: #F5C518;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transition: box-shadow 0.15s;
     }
-    .btn:active { transform: translateY(1px); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-    .btn:focus-visible { outline: 3px solid #F5C518; outline-offset: 3px; }
-    .btn-icon { width: 20px; height: 20px; fill: #1a1a1a; flex-shrink: 0; }
+    .icon-link:hover .icon-circle {
+      box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+    }
+    .icon-circle svg {
+      width: 24px; height: 24px;
+      fill: #1a1a1a;
+    }
+
+    .icon-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
 
     /* ===== FOOTER ===== */
     .footer {
-      margin-top: 28px; font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      text-align: center; letter-spacing: 1px;
+      margin-top: 32px; font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
     }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 380px) {
-      .username { font-size: 22px; }
-      .btn { font-size: 14px; padding: 14px 20px; }
-      .container { padding: 40px 16px 32px; }
-      .avatar { width: 100px; height: 100px; border-radius: 50%; }
+    @media (max-width: 360px) {
+      .title { font-size: 28px; }
+      .icon-links { gap: 16px; }
+      .icon-circle { width: 46px; height: 46px; }
+      .icon-circle svg { width: 20px; height: 20px; }
+      .icon-label { font-size: 10px; }
+      .avatar { width: 100px; height: 100px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== WATERMARK ===== -->
   <span class="watermark">iamvolo.ai</span>
 
-  <!-- ===== CLOUDS ===== -->
   <div class="clouds-bg">
-    <svg class="cloud cloud-1" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
-      <path d="M35,90 Q8,90 12,68 Q16,48 35,44 Q28,24 50,14 Q72,5 90,18 Q105,2 130,3 Q155,5 160,24 Q175,12 195,16 Q215,22 210,44 Q230,40 245,52 Q260,66 250,82 Q245,92 225,90 Q210,96 190,88 Q170,96 148,88 Q125,96 105,88 Q82,96 60,88 Z"/>
-    </svg>
-    <svg class="cloud cloud-2" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M30,82 Q8,82 10,62 Q14,44 30,40 Q24,22 42,14 Q62,6 78,18 Q90,4 112,4 Q132,6 136,22 Q150,14 166,18 Q182,24 178,42 Q196,38 208,50 Q220,64 210,78 Q200,86 185,82 Q168,90 148,82 Q128,90 108,82 Q88,90 68,82 Q48,88 35,84 Z"/>
-    </svg>
-    <svg class="cloud cloud-3" viewBox="0 0 200 85" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25,70 Q6,70 10,52 Q14,36 28,34 Q22,18 38,12 Q56,5 68,16 Q78,3 96,4 Q114,6 118,20 Q130,12 144,18 Q158,24 154,40 Q168,38 175,50 Q182,62 172,72 Q160,78 145,72 Q128,80 108,72 Q88,80 70,72 Q50,78 35,72 Z"/>
-    </svg>
-    <svg class="cloud cloud-4" viewBox="0 0 170 75" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20,62 Q5,62 8,46 Q12,32 24,30 Q20,16 34,10 Q48,4 58,14 Q68,2 84,3 Q100,5 104,18 Q116,12 128,18 Q140,24 136,38 Q150,38 155,48 Q160,58 148,64 Q136,70 122,64 Q106,72 90,64 Q72,72 56,64 Q38,68 25,62 Z"/>
-    </svg>
-    <svg class="cloud cloud-5" viewBox="0 0 160 70" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18,58 Q4,58 7,44 Q10,30 22,28 Q18,16 30,10 Q42,4 52,14 Q60,3 74,4 Q88,6 90,18 Q100,12 112,18 Q122,24 118,38 Q130,38 134,48 Q138,56 126,60 Q114,64 102,58 Q88,64 74,58 Q58,64 44,58 Q28,62 18,58 Z"/>
-    </svg>
-    <svg class="cloud cloud-6" viewBox="0 0 150 65" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16,54 Q4,54 6,40 Q9,28 20,26 Q16,14 28,9 Q40,3 50,12 Q58,2 70,3 Q82,5 84,18 Q94,12 104,18 Q114,24 110,36 Q122,36 126,46 Q130,54 118,56 Q106,60 94,54 Q80,60 68,54 Q52,60 40,54 Q26,58 16,54 Z"/>
-    </svg>
-    <svg class="cloud cloud-7" viewBox="0 0 270 110" xmlns="http://www.w3.org/2000/svg">
-      <path d="M35,90 Q8,90 12,68 Q16,48 35,44 Q28,24 52,14 Q76,5 95,18 Q110,2 135,3 Q160,5 165,24 Q180,12 200,16 Q220,22 215,44 Q235,40 248,52 Q260,66 250,82 Q245,92 228,90 Q212,96 192,88 Q172,96 150,88 Q128,96 108,88 Q85,96 62,88 Z"/>
-    </svg>
-    <svg class="cloud cloud-8" viewBox="0 0 230 95" xmlns="http://www.w3.org/2000/svg">
-      <path d="M28,78 Q8,78 10,58 Q14,42 30,38 Q24,20 44,12 Q64,5 80,18 Q92,3 114,3 Q134,5 138,22 Q152,14 168,18 Q184,24 180,42 Q198,38 210,50 Q222,64 212,76 Q200,84 185,78 Q168,86 148,78 Q128,86 108,78 Q88,86 68,78 Q48,84 32,80 Z"/>
-    </svg>
-    <svg class="cloud cloud-9" viewBox="0 0 210 90" xmlns="http://www.w3.org/2000/svg">
-      <path d="M26,74 Q8,74 10,56 Q14,40 28,38 Q22,22 40,14 Q58,6 72,18 Q84,3 104,3 Q124,5 128,20 Q142,12 156,18 Q170,24 166,40 Q180,38 190,50 Q200,62 188,72 Q176,80 160,74 Q144,82 126,74 Q106,82 88,74 Q68,82 50,74 Q34,78 24,74 Z"/>
-    </svg>
+    <svg class="cloud cloud-1" viewBox="0 0 260 110"><path d="M35,90 Q8,90 12,68 Q16,48 35,44 Q28,24 50,14 Q72,5 90,18 Q105,2 130,3 Q155,5 160,24 Q175,12 195,16 Q215,22 210,44 Q230,40 240,52 Q250,66 240,82 Q235,92 218,90 Q200,96 180,88 Q160,96 138,88 Q115,96 95,88 Q72,96 50,88 Z"/></svg>
+    <svg class="cloud cloud-2" viewBox="0 0 220 95"><path d="M28,78 Q8,78 10,58 Q14,42 30,38 Q24,20 44,12 Q64,5 80,18 Q92,3 112,3 Q132,5 136,22 Q150,14 166,18 Q182,24 178,42 Q195,38 205,50 Q215,64 205,76 Q195,84 180,78 Q164,86 144,78 Q124,86 104,78 Q84,86 64,78 Q44,84 30,80 Z"/></svg>
+    <svg class="cloud cloud-3" viewBox="0 0 180 80"><path d="M20,65 Q5,65 8,50 Q11,38 25,35 Q18,20 35,14 Q52,8 65,18 Q75,5 92,6 Q110,8 115,22 Q128,16 140,22 Q155,30 150,45 Q165,45 170,56 Q175,68 160,72 Q145,78 130,72 Q115,80 98,75 Q80,80 65,72 Q48,78 35,72 Z"/></svg>
+    <svg class="cloud cloud-4" viewBox="0 0 150 65"><path d="M16,54 Q4,54 6,40 Q9,28 20,26 Q16,14 28,9 Q40,3 50,12 Q58,2 70,3 Q82,5 84,18 Q94,12 104,18 Q114,24 110,36 Q122,36 126,46 Q130,54 118,56 Q106,60 94,54 Q80,60 68,54 Q52,60 40,54 Z"/></svg>
+    <svg class="cloud cloud-5" viewBox="0 0 140 65"><path d="M15,52 Q4,52 6,40 Q9,28 20,26 Q16,15 28,10 Q40,5 50,14 Q58,4 72,5 Q86,7 88,20 Q98,14 108,20 Q118,26 115,38 Q126,40 128,50 Q128,58 116,58 Q104,62 92,56 Q78,62 65,56 Q50,62 38,56 Q24,60 15,55 Z"/></svg>
+    <svg class="cloud cloud-6" viewBox="0 0 130 60"><path d="M14,48 Q4,48 6,36 Q8,26 18,24 Q14,14 26,9 Q38,4 48,12 Q56,3 68,4 Q80,6 82,18 Q92,12 102,18 Q112,24 108,36 Q118,38 120,46 Q120,54 108,54 Q96,58 86,52 Q74,58 62,52 Q48,58 36,52 Q22,56 14,50 Z"/></svg>
+    <svg class="cloud cloud-7" viewBox="0 0 250 100"><path d="M30,82 Q8,82 10,62 Q14,44 30,40 Q24,22 44,14 Q64,6 80,18 Q95,2 118,3 Q142,5 146,22 Q160,14 178,18 Q196,24 192,42 Q210,38 222,50 Q234,64 224,78 Q214,86 198,82 Q180,90 160,82 Q138,90 118,82 Q96,90 76,82 Q56,90 38,82 Z"/></svg>
+    <svg class="cloud cloud-8" viewBox="0 0 210 85"><path d="M24,68 Q8,68 10,52 Q14,38 26,36 Q20,22 36,14 Q52,8 65,18 Q76,5 94,5 Q112,6 116,20 Q128,14 140,18 Q154,24 150,40 Q164,38 172,50 Q180,62 168,70 Q155,78 138,72 Q122,80 105,74 Q88,82 72,74 Q55,80 40,74 Q26,78 20,70 Z"/></svg>
+    <svg class="cloud cloud-9" viewBox="0 0 200 85"><path d="M22,68 Q6,68 8,52 Q10,38 24,35 Q18,20 35,14 Q52,8 65,18 Q75,5 92,5 Q110,6 115,20 Q128,12 142,18 Q156,24 152,40 Q168,38 178,48 Q188,60 175,70 Q162,78 145,72 Q130,80 112,74 Q95,82 78,74 Q60,80 44,74 Q28,78 22,72 Z"/></svg>
   </div>
 
-  <!-- ===== CONTENT ===== -->
   <main class="container">
-    <header class="profile">
-      <!-- ЗАМЕНИ avatar.jpg НА СВОЁ ФОТО -->
-      <img src="avatar.jpg" alt="iamvolo.ai" class="avatar" />
-      <h1 class="username">iamvolo.ai</h1>
+    <img src="avatar.jpg" alt="iamvolo.ai" class="avatar" />
+    <h1 class="title">iamvolo.ai</h1>
+    <p class="tagline">🎨 AI visuals that shouldn't be possible<br>🎬 Stills × Motion for brands</p>
 
-      <div class="socials">
-        <a class="social-icon" href="https://www.tiktok.com/@iamvolo.ai" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.52a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.27 8.27 0 004.84 1.56V6.76a4.84 4.84 0 01-1.08-.07z"/></svg>
-        </a>
-        <a class="social-icon" href="https://www.instagram.com/iamvolo.ai" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44a4.07 4.07 0 01-.98 1.51c-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41a4.07 4.07 0 01-1.51-.98 4.07 4.07 0 01-.98-1.51c-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51a4.07 4.07 0 011.51-.98c.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.93 5.93 0 00-2.15 1.4A5.93 5.93 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.4 2.15a5.93 5.93 0 002.15 1.4c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.93 5.93 0 002.15-1.4 5.93 5.93 0 001.4-2.15c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.93 5.93 0 00-1.4-2.15A5.93 5.93 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-        </a>
-        <a class="social-icon" href="https://t.me/iamvoloai" target="_blank" rel="noopener" aria-label="Telegram">
+    <nav class="icon-links">
+      <a class="icon-link" href="https://t.me/iamvoloai" target="_blank" rel="noopener">
+        <div class="icon-circle">
           <svg viewBox="0 0 24 24"><path d="M11.94 24c6.63 0 12-5.37 12-12s-5.37-12-12-12-12 5.37-12 12 5.37 12 12 12zm-3.15-8.27l-.04-.68 7.7-6.96c.34-.3-.07-.46-.53-.18l-9.52 6-.41-.01-4.1-1.36c-.89-.27-.91-.89.19-1.33l16.06-6.2c.73-.33 1.42.18 1.14 1.3l-2.74 12.9c-.19.91-.76 1.13-1.54.71l-4.26-3.15-2.05 1.97c-.23.23-.42.42-.86.42z"/></svg>
-        </a>
-      </div>
-
-      <p class="tagline">🎨 AI visuals that shouldn't be possible<br>🎬 Stills × Motion for brands</p>
-    </header>
-
-    <nav class="links">
-      <a class="btn" href="https://t.me/iamvoloai" target="_blank" rel="noopener">
-        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M11.94 24c6.63 0 12-5.37 12-12s-5.37-12-12-12-12 5.37-12 12 5.37 12 12 12zm-3.15-8.27l-.04-.68 7.7-6.96c.34-.3-.07-.46-.53-.18l-9.52 6-.41-.01-4.1-1.36c-.89-.27-.91-.89.19-1.33l16.06-6.2c.73-.33 1.42.18 1.14 1.3l-2.74 12.9c-.19.91-.76 1.13-1.54.71l-4.26-3.15-2.05 1.97c-.23.23-.42.42-.86.42z"/></svg>
-        TELEGRAM-КАНАЛ
+        </div>
+        <span class="icon-label">Telegram</span>
       </a>
-      <a class="btn" href="https://www.tiktok.com/@iamvolo.ai" target="_blank" rel="noopener">
-        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.52a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.27 8.27 0 004.84 1.56V6.76a4.84 4.84 0 01-1.08-.07z"/></svg>
-        TIKTOK
+      <a class="icon-link" href="https://www.tiktok.com/@iamvolo.ai" target="_blank" rel="noopener">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.52a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.27 8.27 0 004.84 1.56V6.76a4.84 4.84 0 01-1.08-.07z"/></svg>
+        </div>
+        <span class="icon-label">TikTok</span>
       </a>
-      <a class="btn" href="https://www.instagram.com/iamvolo.ai" target="_blank" rel="noopener">
-        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44a4.07 4.07 0 01-.98 1.51c-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41a4.07 4.07 0 01-1.51-.98 4.07 4.07 0 01-.98-1.51c-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51a4.07 4.07 0 011.51-.98c.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.93 5.93 0 00-2.15 1.4A5.93 5.93 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.4 2.15a5.93 5.93 0 002.15 1.4c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.93 5.93 0 002.15-1.4 5.93 5.93 0 001.4-2.15c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.93 5.93 0 00-1.4-2.15A5.93 5.93 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-        INSTAGRAM
+      <a class="icon-link" href="https://www.instagram.com/iamvolo.ai" target="_blank" rel="noopener">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44a4.07 4.07 0 01-.98 1.51c-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41a4.07 4.07 0 01-1.51-.98 4.07 4.07 0 01-.98-1.51c-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51a4.07 4.07 0 011.51-.98c.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.93 5.93 0 00-2.15 1.4A5.93 5.93 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.4 2.15a5.93 5.93 0 002.15 1.4c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.93 5.93 0 002.15-1.4 5.93 5.93 0 001.4-2.15c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.93 5.93 0 00-1.4-2.15A5.93 5.93 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </div>
+        <span class="icon-label">Instagram</span>
       </a>
-      <a class="btn" href="https://t.me/ruzdrill" target="_blank" rel="noopener">
-        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/></svg>
-        ЗАКАЗАТЬ AI-СЪЁМКУ
+      <a class="icon-link" href="https://t.me/ruzdrill" target="_blank" rel="noopener">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/></svg>
+        </div>
+        <span class="icon-label">Order</span>
       </a>
     </nav>
 
