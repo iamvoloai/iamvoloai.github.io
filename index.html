@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iamvolo.ai</title>
+  <meta property="og:title" content="iamvolo.ai — AI visuals that shouldn't be possible">
+  <meta property="og:description" content="Telegram-канал, TikTok, заказ AI-съёмок">
+  <meta property="og:image" content="avatar.jpg">
+  <meta property="og:type" content="website">
+  <meta name="description" content="AI visuals that shouldn't be possible. Stills × Motion for brands. @iamvolo.ai">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #7FCBE8;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      min-height: 100dvh;
+      position: relative;
+    }
+
+    /* ===== CLOUDS LAYER ===== */
+    .clouds-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      fill: #FFFFFF;
+      stroke: #B7E2F2;
+      stroke-width: 3;
+      stroke-linejoin: round;
+    }
+
+    /* Top clouds */
+    .cloud-1 { top: -20px; left: -40px; width: 220px; }
+    .cloud-2 { top: 10px; right: -30px; width: 200px; }
+    .cloud-3 { top: 40px; left: 30%; width: 180px; }
+    .cloud-4 { top: -10px; left: 55%; width: 160px; }
+
+    /* Middle side clouds */
+    .cloud-5 { top: 42%; left: -60px; width: 140px; }
+    .cloud-6 { top: 55%; right: -50px; width: 130px; }
+
+    /* Bottom clouds */
+    .cloud-7 { bottom: -15px; left: -20px; width: 240px; }
+    .cloud-8 { bottom: 20px; right: -30px; width: 200px; }
+    .cloud-9 { bottom: -25px; left: 40%; width: 190px; }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      padding: 48px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== AVATAR ===== */
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #FED90F;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ===== TITLE ===== */
+    .title {
+      font-family: 'Fredoka One', 'Sniglet', 'Comic Sans MS', 'Marker Felt', cursive;
+      font-size: 52px;
+      font-weight: 400; /* Fredoka One only has 400 */
+      color: #FED90F;
+      text-shadow: 4px 5px 0 #E8A92E;
+      text-transform: lowercase;
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    /* ===== TAGLINE ===== */
+    .tagline {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 1.5;
+      margin-top: 10px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* ===== NAV LINKS / BUTTONS ===== */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 18px 24px;
+      background: #FED90F;
+      color: #000000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 32px;
+      border: 2px solid #E8A92E;
+      box-shadow: 0 4px 0 #E8A92E;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      min-height: 56px;
+      letter-spacing: 0.5px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #E8A92E;
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #E8A92E;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid #FFFFFF;
+      outline-offset: 3px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 380px) {
+      .title {
+        font-size: 42px;
+      }
+      .btn {
+        font-size: 16px;
+        padding: 16px 20px;
+      }
+      .container {
+        padding: 36px 16px 32px;
+      }
+    }
+
+    @media (min-width: 481px) {
+      .title {
+        font-size: 58px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CLOUDS BACKGROUND ===== -->
+  <div class="clouds-bg">
+
+    <!-- Cloud 1: top-left, large -->
+    <svg class="cloud cloud-1" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30,80 Q10,80 10,65 Q10,50 25,45 Q20,30 35,22 Q50,14 65,22 Q75,10 95,10 Q115,10 120,25 Q130,15 145,18 Q160,22 160,38 Q175,35 185,45 Q195,55 190,68 Q195,80 180,82 Q180,90 160,90 Q140,92 130,85 Q120,92 100,90 Q80,92 70,85 Q55,92 40,88 Z" />
+    </svg>
+
+    <!-- Cloud 2: top-right -->
+    <svg class="cloud cloud-2" viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
+      <path d="M25,72 Q8,72 10,55 Q12,40 28,38 Q22,22 40,16 Q58,10 72,20 Q82,8 100,8 Q118,8 125,22 Q138,14 152,20 Q166,28 162,42 Q178,40 185,52 Q192,64 182,75 Q170,82 155,78 Q142,85 125,80 Q108,88 90,82 Q72,88 55,80 Q38,84 25,78 Z" />
+    </svg>
+
+    <!-- Cloud 3: top-center-left -->
+    <svg class="cloud cloud-3" viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20,65 Q5,65 8,50 Q11,38 25,35 Q18,20 35,14 Q52,8 65,18 Q75,5 92,6 Q110,8 115,22 Q128,16 140,22 Q155,30 150,45 Q165,45 170,56 Q175,68 160,72 Q145,78 130,72 Q115,80 98,75 Q80,80 65,72 Q48,78 35,72 Z" />
+    </svg>
+
+    <!-- Cloud 4: top-right area -->
+    <svg class="cloud cloud-4" viewBox="0 0 160 70" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18,56 Q5,56 8,42 Q12,30 24,28 Q20,16 34,10 Q48,5 58,14 Q68,4 82,5 Q96,6 100,18 Q112,12 124,18 Q136,24 132,38 Q145,38 148,48 Q152,58 140,62 Q128,68 115,62 Q100,70 85,64 Q68,70 52,62 Q38,66 25,60 Z" />
+    </svg>
+
+    <!-- Cloud 5: middle-left -->
+    <svg class="cloud cloud-5" viewBox="0 0 140 65" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15,52 Q4,52 6,40 Q9,28 20,26 Q16,15 28,10 Q40,5 50,14 Q58,4 72,5 Q86,7 88,20 Q98,14 108,20 Q118,26 115,38 Q126,40 128,50 Q128,58 116,58 Q104,62 92,56 Q78,62 65,56 Q50,62 38,56 Q24,60 15,55 Z" />
+    </svg>
+
+    <!-- Cloud 6: middle-right -->
+    <svg class="cloud cloud-6" viewBox="0 0 130 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14,48 Q4,48 6,36 Q8,26 18,24 Q14,14 26,9 Q38,4 48,12 Q56,3 68,4 Q80,6 82,18 Q92,12 102,18 Q112,24 108,36 Q118,38 120,46 Q120,54 108,54 Q96,58 86,52 Q74,58 62,52 Q48,58 36,52 Q22,56 14,50 Z" />
+    </svg>
+
+    <!-- Cloud 7: bottom-left, large -->
+    <svg class="cloud cloud-7" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30,80 Q8,80 10,62 Q12,46 28,42 Q22,26 40,18 Q58,10 75,20 Q88,6 108,6 Q128,6 135,22 Q148,14 165,18 Q182,24 178,42 Q195,38 205,50 Q215,62 205,75 Q200,85 185,82 Q170,90 152,84 Q135,92 118,85 Q100,92 82,85 Q65,92 48,85 Q32,88 25,82 Z" />
+    </svg>
+
+    <!-- Cloud 8: bottom-right -->
+    <svg class="cloud cloud-8" viewBox="0 0 200 85" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22,68 Q6,68 8,52 Q10,38 24,35 Q18,20 35,14 Q52,8 65,18 Q75,5 92,5 Q110,6 115,20 Q128,12 142,18 Q156,24 152,40 Q168,38 178,48 Q188,60 175,70 Q162,78 145,72 Q130,80 112,74 Q95,82 78,74 Q60,80 44,74 Q28,78 22,72 Z" />
+    </svg>
+
+    <!-- Cloud 9: bottom-center -->
+    <svg class="cloud cloud-9" viewBox="0 0 190 85" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24,68 Q8,68 10,52 Q14,38 26,36 Q20,22 36,14 Q52,8 65,18 Q76,5 94,5 Q112,6 116,20 Q128,14 140,18 Q154,24 150,40 Q164,38 172,50 Q180,62 168,70 Q155,78 138,72 Q122,80 105,74 Q88,82 72,74 Q55,80 40,74 Q26,78 20,70 Z" />
+    </svg>
+
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container">
+
+    <header class="profile">
+      <img src="avatar.jpg" alt="iamvolo.ai" class="avatar" />
+      <h1 class="title">iamvolo.ai</h1>
+      <p class="tagline">🎨 AI visuals that shouldn't be possible<br>🎬 Stills × Motion for brands</p>
+    </header>
+
+    <nav class="links">
+      <a class="btn" href="https://t.me/iamvoloai" target="_blank" rel="noopener">📩 TELEGRAM-КАНАЛ</a>
+      <a class="btn" href="https://www.tiktok.com/@iamvolo.ai" target="_blank" rel="noopener">🎵 TIKTOK</a>
+      <a class="btn" href="https://www.instagram.com/iamvolo.ai" target="_blank" rel="noopener">📸 INSTAGRAM</a>
+      <a class="btn" href="https://t.me/ruzdrill" target="_blank" rel="noopener">💼 ЗАКАЗАТЬ AI-СЪЁМКУ</a>
+    </nav>
+
+  </main>
+
+</body>
+</html>
